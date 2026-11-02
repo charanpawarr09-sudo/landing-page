@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import { LazyMotion, domAnimation, MotionConfig } from 'framer-motion';
 import { ArrowRight, ArrowUpRight, X } from 'lucide-react';
 
@@ -40,7 +41,7 @@ export function MarketingProvider({ children, trialHref, contactEmail }: { child
               <div id="launch-dialog-copy" className="dialog-copy">
                 {panel?.kind === 'contact' ? <p>A Repairnox contact channel is being prepared. This preview doesn’t collect or send your details. In the meantime, take a look around the sample shop.</p> : panel?.kind === 'privacy' ? <><p>The full Privacy Policy will be available before live registration. This preview has no enquiry form, account registration or analytics tracking.</p><p>The sample repair runs in this tab and resets when you reload. No sample actions reach a live shop. Hosting services may process standard access logs when the website is deployed.</p></> : panel?.kind === 'social' ? <p>Our official {panel.network} profile isn’t ready yet. Explore the product here while we get ready to launch.</p> : <><p>Free trial registration is coming soon. You can explore a complete sample repair now, without creating an account or entering customer information.</p>{panel?.plan ? <p className="dialog-plan-note">{panel.plan === 'standard' ? 'Standard: planned Early Bird pricing of $29.99/month USD, regularly $39.99, for one shop.' : 'Pro: planned pricing of $49.99/month USD. Multi-store tools, unlimited staff and priority support are planned.'} No subscription or payment is created here.</p> : null}</>}
               </div>
-              <a className="button button-dark" href="/#workflow" onClick={() => setPanel(null)}>Explore the sample shop<ArrowRight size={17} aria-hidden="true" /></a>
+              <Link className="button button-dark" href="/#workflow" onClick={() => setPanel(null)}>Explore the sample shop<ArrowRight size={17} aria-hidden="true" /></Link>
               {contactEmail && panel?.kind === 'contact' ? <a className="dialog-email" href={`mailto:${contactEmail}`}>Email Repairnox<ArrowUpRight size={16} aria-hidden="true" /></a> : null}
             </div>
           </dialog>

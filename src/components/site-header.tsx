@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import * as m from 'framer-motion/m';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
 import { BrandMark } from './brand-mark';
@@ -57,14 +58,14 @@ export function SiteHeader() {
   return <header className="site-header site-header-clean" onKeyDown={event=>{if(event.key==='Escape' && open){setOpen(false);toggleRef.current?.focus();}}}>
     <a className="skip-link" href="#main-content">Skip to content</a>
     <div className="header-inner container">
-      <a className="brand-lockup" href="/" aria-label="Repairnox home"><BrandMark /><span>Repairnox<span className="brand-dot">.</span></span></a>
-      <nav className="desktop-nav" aria-label="Main navigation">{nav.map(item=><a href={item.href} key={item.label} aria-current={active===item.href?'location':undefined}>{item.label}</a>)}</nav>
-      <a className="header-demo" href="/#workflow"><span>Explore demo</span><ArrowUpRight size={15} aria-hidden="true" /></a>
+      <Link className="brand-lockup" href="/" aria-label="Repairnox home"><BrandMark /><span>Repairnox<span className="brand-dot">.</span></span></Link>
+      <nav className="desktop-nav" aria-label="Main navigation">{nav.map(item=><Link href={item.href} key={item.label} aria-current={active===item.href?'location':undefined}>{item.label}</Link>)}</nav>
+      <Link className="header-demo" href="/#workflow"><span>Explore demo</span><ArrowUpRight size={15} aria-hidden="true" /></Link>
       <button ref={toggleRef} className="icon-button menu-toggle" type="button" aria-label={open ? 'Close navigation menu' : 'Open navigation menu'} aria-expanded={open} aria-controls="mobile-navigation" onClick={()=>setOpen(!open)}><span>{open ? 'Close' : 'Menu'}</span>{open ? <X aria-hidden="true"/> : <Menu aria-hidden="true"/>}</button>
     </div>
     <m.nav id="mobile-navigation" className="mobile-nav" aria-label="Mobile navigation" hidden={!open} initial={false} animate={{opacity:open?1:0,y:reduced||open?0:-6}} transition={{duration:reduced?0:.18}}>
-      <div className="mobile-nav-links">{nav.map(item=><a href={item.href} key={item.label} aria-current={active===item.href?'location':undefined} onClick={()=>setOpen(false)}>{item.label}<ArrowUpRight size={16} aria-hidden="true"/></a>)}</div>
-      <a className="mobile-nav-demo" href="/#workflow" onClick={()=>setOpen(false)}>Explore demo<ArrowUpRight size={17} aria-hidden="true" /></a>
+      <div className="mobile-nav-links">{nav.map(item=><Link href={item.href} key={item.label} aria-current={active===item.href?'location':undefined} onClick={()=>setOpen(false)}>{item.label}<ArrowUpRight size={16} aria-hidden="true"/></Link>)}</div>
+      <Link className="mobile-nav-demo" href="/#workflow" onClick={()=>setOpen(false)}>Explore demo<ArrowUpRight size={17} aria-hidden="true" /></Link>
     </m.nav>
   </header>;
 }

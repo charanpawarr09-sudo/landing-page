@@ -5,7 +5,7 @@ import { ArrowDownToLine, ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { SiteFrame } from "@/components/site-frame";
 import { TrialAction } from "@/components/trial-action";
 import { guides } from "@/content/guides";
-import { siteOrigin } from "@/lib/site-config";
+import { siteOrigin, assetPath } from "@/lib/site-config";
 import "../guide.css";
 
 type GuidePageProps = { params: Promise<{ slug: string }> };
@@ -53,7 +53,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
           <h1>{guide.title}</h1>
           <p className="guide-description">{guide.description}</p>
           <div className="guide-actions">
-            <a className="button button-dark" href={`/resources/${guide.slug}.md`} download><ArrowDownToLine size={17} aria-hidden="true" />Download checklist <span className="guide-file-type">.md</span></a>
+            <a className="button button-dark" href={assetPath(`/resources/${guide.slug}.md`)} download><ArrowDownToLine size={17} aria-hidden="true" />Download checklist <span className="guide-file-type">.md</span></a>
             <p>Read it here, or use your browser to print.</p>
           </div>
         </header>

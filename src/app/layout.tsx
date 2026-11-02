@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { siteOrigin } from '@/lib/site-config';
+import { siteOrigin, assetPath } from '@/lib/site-config';
 
 const geist = localFont({
   src: "../../public/fonts/geist-latin.woff2",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     ...(siteOrigin ? { url: siteOrigin, images: [{url: `${siteOrigin}/social-preview.png`, width:1200, height:630, alt:'Repairnox — Your repair shop. Working as one.'}] } : {}),
   },
   twitter: { card: 'summary_large_image', title: 'Your repair shop. Working as one. | Repairnox', description: 'One workspace for independent repair shops. Explore the sample workflow.', ...(siteOrigin ? {images:[`${siteOrigin}/social-preview.png`]} : {}) },
-  icons: { icon: { url: "/brand/repairnox-icon.svg", type: "image/svg+xml" } },
+  icons: { icon: { url: assetPath("/brand/repairnox-icon.svg"), type: "image/svg+xml" } },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

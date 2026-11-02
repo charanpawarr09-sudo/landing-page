@@ -19,3 +19,9 @@ export const siteOrigin = publicOrigin(process.env.NEXT_PUBLIC_SITE_URL);
 export const trialHref = publicHttpUrl(process.env.NEXT_PUBLIC_TRIAL_URL);
 const configuredEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim();
 export const contactEmail = configuredEmail && /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(configuredEmail) ? configuredEmail : undefined;
+export const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
+export function assetPath(path: string): string {
+  if (!basePath) return path;
+  return `${basePath}${path.startsWith('/') ? path : `/${path}`}`;
+}

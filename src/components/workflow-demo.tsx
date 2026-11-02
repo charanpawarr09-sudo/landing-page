@@ -4,6 +4,7 @@ import { useEffect, useReducer, useRef } from 'react';
 import * as m from 'framer-motion/m';
 import { ArrowLeft, ArrowRight, Check, Download, Package, RotateCcw, Smartphone } from 'lucide-react';
 import { useMotionPreference } from './motion-primitives';
+import { assetPath } from '@/lib/site-config';
 import styles from './workflow-demo.module.css';
 
 type Stage = 0 | 1 | 2;
@@ -273,7 +274,7 @@ export function WorkflowDemo() {
               </div>
               <div className={styles.actionRow}>
                 <button className={styles.backButton} type="button" onClick={() => dispatch({ type: 'back' })}><ArrowLeft size={17} aria-hidden="true" />Back</button>
-                {collected ? <a className={styles.primaryButton} href="/resources/sample-receipt.txt" download>Download sample receipt<Download size={17} aria-hidden="true" /></a> : <button className={styles.primaryButton} type="button" onClick={() => dispatch({ type: 'collect' })}>Complete sample checkout<Check size={17} aria-hidden="true" /></button>}
+                {collected ? <a className={styles.primaryButton} href={assetPath("/resources/sample-receipt.txt")} download>Download sample receipt<Download size={17} aria-hidden="true" /></a> : <button className={styles.primaryButton} type="button" onClick={() => dispatch({ type: 'collect' })}>Complete sample checkout<Check size={17} aria-hidden="true" /></button>}
               </div>
             </m.div>
           </div>

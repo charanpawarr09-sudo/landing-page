@@ -17,6 +17,7 @@ from collections import Counter
 from dataclasses import dataclass
 from html.parser import HTMLParser
 import json
+import os
 from pathlib import Path
 import re
 import struct
@@ -168,10 +169,11 @@ def review_json_types(value: object) -> list[str]:
 
 
 class Audit:
-    def __init__(self, directory: Path, origin: str | None):
+    def __init__(self, directory: Path, origin: str | None, base_path: str = ""):
         self.directory = directory.resolve()
         self.origin = origin
         self.base_origin = origin or "https://static-export.invalid"
+        self.base_path = base_path.strip("/")
         self.documents: dict[Path, Document] = {}
         self.errors: list[str] = []
         self.counts: Counter[str] = Counter()
@@ -180,7 +182,12 @@ class Audit:
         self.errors.append(f"{label}: {message}")
 
     def resolve(self, url: str) -> Path | None:
-        path = (self.directory / unquote(urlsplit(url).path).lstrip("/")).resolve()
+        url_path = unquote(urlsplit(url).path).lstrip("/")
+        if self.base_path and url_path.startswith(self.base_path + "/"):
+            url_path = url_path[len(self.base_path) + 1:]
+        elif self.base_path and url_path == self.base_path:
+            url_path = ""
+        path = (self.directory / url_path).resolve()
         if not path.is_relative_to(self.directory):
             return None
         if path.is_dir():
@@ -191,7 +198,8 @@ class Audit:
         return not parsed.netloc or parsed.netloc == urlsplit(self.base_origin).netloc or (parsed.hostname or "").lower() in LOOPBACK
 
     def references(self, doc: Document) -> None:
-        base = urljoin(self.base_origin + doc.route, doc.base_href or "")
+        base_route = f"/{self.base_path}{doc.route}" if self.base_path else doc.route
+        base = urljoin(self.base_origin + base_route, doc.base_href or "")
         for reference in doc.references:
             label = f"{doc.route} line {reference.line} {reference.tag}[{reference.attribute}]"
             raw = reference.value.strip()
@@ -420,13 +428,14 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--directory", type=Path, default=PROJECT / "out", help="static export directory (default: project out/)")
     parser.add_argument("--origin", help="exact HTTPS origin used to build a configured-origin export")
+    parser.add_argument("--base-path", default=os.environ.get("NEXT_PUBLIC_BASE_PATH", ""), help="base path prefix (e.g. /landing-page)")
     arguments = parser.parse_args()
     origin = arguments.origin.rstrip("/") if arguments.origin else None
     if origin:
         parsed = urlsplit(origin)
         if parsed.scheme != "https" or not parsed.netloc or parsed.username or parsed.password or parsed.path or parsed.query or parsed.fragment:
             parser.error("--origin must be an HTTPS origin without credentials, path, query or fragment")
-    audit = Audit(arguments.directory, origin)
+    audit = Audit(arguments.directory, origin, arguments.base_path)
     passed = audit.run()
     print(f"{'PASS' if passed else 'FAIL'} — static export audit ({origin or 'no-origin prelaunch preview'})")
     print(f"HTML: {audit.counts['html_documents']} documents; {audit.counts['public_pages']} public pages; {audit.counts['guides']} guides")
