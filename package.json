@@ -1,0 +1,25 @@
+{
+  "name": "repairnox-hero",
+  "version": "0.1.0",
+  "private": true,
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1 --port 3100",
+    "build": "next build",
+    "typecheck": "tsc --noEmit",
+    "preview": "python3 scripts/preview.py"
+  },
+  "dependencies": {
+    "framer-motion": "14.7.1",
+    "lucide-react": "1.33.0",
+    "next": "16.4.3",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "typescript": "^5"
+  }
+}

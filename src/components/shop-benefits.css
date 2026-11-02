@@ -1,0 +1,90 @@
+/* Explain the value once; the following interactive demo supplies the example. */
+.shop-benefits {
+  padding-block:64px;
+  background:var(--surface);
+  color:var(--ink);
+}
+.shop-benefits-layout {
+  display:grid;
+  grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);
+  align-items:start;
+  gap:100px;
+}
+.shop-benefits-intro,.shop-benefits-content { min-width:0; }
+.shop-benefits-intro h2 {
+  margin:0;
+  font-size:clamp(40px,4vw,54px);
+  font-weight:550;
+  line-height:1.08;
+  letter-spacing:-.05em;
+}
+.shop-benefits-intro h2>span { color:#515a67; }
+.shop-benefits-intro>p {
+  max-width:350px;
+  margin-top:21px;
+  color:#626b78;
+  font-size:16px;
+  line-height:1.75;
+  text-wrap:pretty;
+}
+.shop-benefits-list { margin:0; }
+.shop-benefits-row { padding-block:19px; }
+.shop-benefits-row:first-child { padding-top:0; }
+.shop-benefits-row:last-child { padding-bottom:0; }
+.shop-benefits-row+.shop-benefits-row { border-top:1px solid var(--line); }
+.shop-benefits-row dt {
+  color:#24282f;
+  font-size:19px;
+  font-weight:550;
+  line-height:1.4;
+  letter-spacing:-.35px;
+}
+.shop-benefits-row dd {
+  margin:7px 0 0;
+  color:#626b78;
+  font-size:15px;
+  line-height:1.7;
+  text-wrap:pretty;
+}
+.shop-benefits-link {
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  min-height:44px;
+  margin-top:15px;
+  color:#252a32;
+  font-size:14px;
+  font-weight:550;
+  line-height:1.5;
+  text-decoration:none;
+}
+.shop-benefits-link:hover { text-decoration:underline; text-underline-offset:5px; }
+.shop-benefits-link:focus-visible { border-radius:2px; }
+
+@media (prefers-reduced-motion:no-preference) {
+  .shop-benefits-layout[data-enter="true"] { animation:shop-benefits-arrive 300ms cubic-bezier(.22,1,.36,1) both; }
+}
+@keyframes shop-benefits-arrive {
+  from { transform:translateY(8px); }
+  to { transform:translateY(0); }
+}
+@media (max-width:1000px) {
+  .shop-benefits-layout { grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:50px; }
+  .shop-benefits-intro h2 { font-size:43px; }
+  .shop-benefits-intro>p { font-size:15px; }
+  .shop-benefits-row dt { font-size:18px; }
+}
+@media (max-width:760px) {
+  .shop-benefits { padding-block:52px; }
+  .shop-benefits-layout { grid-template-columns:minmax(0,1fr); gap:32px; }
+  .shop-benefits-intro h2 { font-size:42px; }
+  .shop-benefits-intro>p { max-width:440px; margin-top:16px; }
+  .shop-benefits-row { padding-block:20px; }
+  .shop-benefits-link { margin-top:14px; }
+}
+@media (prefers-reduced-motion:reduce), print {
+  .shop-benefits-layout { animation:none; transform:none; }
+}
+@media print {
+  .shop-benefits { padding-block:30px; }
+}

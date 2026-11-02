@@ -1,0 +1,17 @@
+.desktop-nav a { position:relative; }
+.desktop-nav a::after { content:""; position:absolute; inset-inline:0; bottom:4px; height:1px; background:currentColor; transform:scaleX(0); transform-origin:left; transition:transform .2s ease; }
+.desktop-nav a[aria-current="location"] { color:var(--ink); }
+.desktop-nav a[aria-current="location"]::after { transform:scaleX(1); }
+.mobile-nav a[aria-current="location"] { font-weight:650; }
+.demo-stages { display:grid; }
+.demo-stages>.demo-stage { grid-area:1/1; min-width:0; }
+.demo-stages>.demo-stage[data-active="false"] { visibility:hidden; pointer-events:none; }
+
+@media (prefers-reduced-motion:reduce) {
+  .motion-reveal { opacity:1!important; transform:none!important; }
+  .demo-stage { transform:none!important; }
+}
+
+@media print {
+  .motion-reveal { opacity:1!important; transform:none!important; }
+}

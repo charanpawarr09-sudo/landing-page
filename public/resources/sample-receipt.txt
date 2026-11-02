@@ -1,0 +1,18 @@
+REPAIRNOX — SAMPLE RECEIPT
+Illustrative demo only. This is not a real sale or tax invoice.
+
+Ticket: #1048
+Customer: Sam Taylor (fictional)
+Device: iPhone 15
+Repair: Screen replacement
+
+Replacement screen     $69.00
+Repair labor           $80.00
+--------------------------------
+Total                 $149.00
+Deposit paid           $30.00
+Collected at pickup   $119.00
+Balance                  $0.00
+
+Sample repair status: Collected
+No real payment was processed. No live shop data was changed.
