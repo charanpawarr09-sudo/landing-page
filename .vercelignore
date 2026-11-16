@@ -1,0 +1,15 @@
+.env*
+.next
+node_modules
+*.tsbuildinfo
+**/*.test.ts
+release-manifest.json
+
+docs
+design
+preview
+scripts
+.github
+README.md
+AGENTS.md
+DESIGN.md

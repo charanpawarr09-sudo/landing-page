@@ -1,39 +1,28 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Geist } from "next/font/google";
 import "./globals.css";
-import { siteOrigin, assetPath } from '@/lib/site-config';
 
-const geist = localFont({
-  src: "../../public/fonts/geist-latin.woff2",
-  weight: "100 900",
-  style: "normal",
-  display: "swap",
+const geistSans = Geist({
   variable: "--font-geist-sans",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Repair Shop Software for Tickets, Inventory & POS | Repairnox",
-  description:
-    "One workspace for independent phone and computer repair shops. Explore how Repairnox connects repair tickets, technicians, parts inventory and POS checkout.",
-  applicationName: 'Repairnox',
-  ...(siteOrigin ? { metadataBase: new URL(siteOrigin), alternates: { canonical: siteOrigin + '/' } } : {}),
-  robots: { index: Boolean(siteOrigin), follow: Boolean(siteOrigin) },
-  openGraph: {
-    title: 'Your repair shop. Working as one. | Repairnox',
-    description: 'Repair tickets, technicians, parts and checkout. Explore one connected repair workflow.',
-    siteName: 'Repairnox',
-    type: 'website',
-    locale: 'en_US',
-    ...(siteOrigin ? { url: siteOrigin, images: [{url: `${siteOrigin}/social-preview.png`, width:1200, height:630, alt:'Repairnox — Your repair shop. Working as one.'}] } : {}),
-  },
-  twitter: { card: 'summary_large_image', title: 'Your repair shop. Working as one. | Repairnox', description: 'One workspace for independent repair shops. Explore the sample workflow.', ...(siteOrigin ? {images:[`${siteOrigin}/social-preview.png`]} : {}) },
-  icons: { icon: { url: assetPath("/brand/repairnox-icon.svg"), type: "image/svg+xml" } },
+  metadataBase: new URL("https://repairnox.com"),
+  title: "RepairNox | Repair Shop POS & CRM",
+  description: "Modern point of sale, customer CRM, repair ticketing, and inventory software for repair shops.",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en" className={geist.variable}>
-      <body>{children}</body>
+    <html lang="en" className={geistSans.variable}>
+      <body className="bg-[#f8fafc] text-slate-900 antialiased min-h-screen font-sans selection:bg-teal-100 selection:text-teal-900">
+        {children}
+      </body>
     </html>
   );
 }

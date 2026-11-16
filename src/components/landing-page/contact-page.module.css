@@ -1,0 +1,70 @@
+.contactGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 112px; align-items: start; padding-block: 80px 96px; }
+.copy h1 { font-size: clamp(44px, 4.2vw, 62px); font-weight: 500; line-height: 1.08; letter-spacing: -.05em; }
+.copy > p { margin-top: 28px; max-width: 440px; font-size: 16px; color: var(--secondary); line-height: 1.8; }
+.contactReasons { display: flex; flex-direction: column; gap: 28px; margin-block: 40px 24px; }
+.contactReasons > div { display: flex; gap: 16px; align-items: flex-start; }
+.contactReasons svg { margin-top: 2px; color: var(--secondary); }
+.contactReasons h2 { font-size: 15px !important; line-height: 1.5 !important; letter-spacing: 0 !important; font-weight: 500 !important; }
+.contactReasons p { color: var(--secondary); font-size: 14px; line-height: 1.8; margin-top: 8px; max-width: 360px; }
+.copy .contactNote { color: var(--muted); font-size: 12px; margin-top: 24px; }
+.formPanel { min-width: 0; background: var(--surface); border-radius: 20px; padding: 40px; }
+.formIntro h2 { font-size: 26px !important; font-weight: 500 !important; line-height: 1.3 !important; letter-spacing: -.03em !important; }
+.formIntro p { margin-top: 12px; color: var(--secondary); font-size: 14px; }
+.fields { display: flex; flex-direction: column; gap: 20px; border: 0; margin: 28px 0 0; padding: 0; min-width: 0; }
+.field { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.field label { font-size: 13px; font-weight: 500; }
+.optional { color: var(--muted); font-weight: 400; }
+.field :is(input, select, textarea) { width: 100%; min-width: 0; min-height: 48px; padding: 12px 14px; border: 1px solid var(--field-line); border-radius: 8px; background: var(--canvas); color: var(--ink); font: inherit; font-size: 15px; line-height: 1.6; transition: border-color 160ms var(--ease); }
+.field textarea { resize: vertical; min-height: 144px; max-height: 480px; }
+.field :is(input, select, textarea):focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.field :is(input, textarea)::placeholder { color: var(--muted); font-size: 13px; }
+.field :is(input, select, textarea)[aria-invalid="true"] { border-color: var(--accent); }
+.fieldError { color: var(--accent); font-size: 12px; line-height: 1.7; }
+.selectRow { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.consent { display: flex; align-items: flex-start; gap: 12px; font-size: 12px; line-height: 1.8; cursor: pointer; padding-block: 8px; }
+.consent input { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; accent-color: var(--ink); }
+.formActions { display: flex; justify-content: flex-end; align-items: center; gap: 16px; }
+.reset { min-height: 48px; padding: 12px 16px; border: 0; background: transparent; color: var(--secondary); font-size: 13px !important; }
+.reset:hover { text-decoration: underline; text-underline-offset: 4px; }
+.requiredNote { color: var(--muted); font-size: 11px; line-height: 1.8; }
+.requiredNote a { text-decoration: underline; text-underline-offset: 3px; }
+.fields:disabled { opacity: .65; }
+.fields:disabled button { cursor: wait; }
+.errorSummary { padding: 20px; background: var(--surface-strong); border-radius: 8px; margin-top: 24px; font-size: 13px; }
+.errorSummary p { margin-top: 8px; line-height: 1.8; }
+.errorSummary ul { margin: 12px 0 0; padding-left: 20px; }
+.errorSummary a { text-decoration: underline; text-underline-offset: 3px; }
+.honeypot { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.success { padding-block: 40px; }
+.successIcon { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--ink); color: var(--canvas); margin-bottom: 24px; }
+.success h2 { font-size: 28px !important; line-height: 1.3 !important; }
+.success p { color: var(--secondary); font-size: 15px; line-height: 1.8; margin-block: 20px 28px; }
+.spinner { animation: spin 900ms linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (max-width: 1199px) {
+  .contactGrid { gap: 64px; }
+  .formPanel { padding: 32px; }
+  .selectRow { grid-template-columns: 1fr; gap: 20px; }
+}
+@media (max-width: 900px) {
+  .contactGrid { grid-template-columns: 1fr; gap: 48px; padding-block: 56px 72px; }
+  .copy { max-width: 640px; }
+  .contactReasons { gap: 24px; margin-block: 32px 20px; }
+  .formPanel { max-width: 640px; width: 100%; }
+  .selectRow { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .contactGrid { padding-block: 40px 48px; gap: 32px; }
+  .copy h1 { font-size: clamp(36px, 9.5vw, 48px); }
+  .copy > p { margin-top: 20px; font-size: 15px; }
+  .contactReasons p { font-size: 13px; }
+  .formPanel { padding: 24px 20px; border-radius: 16px; }
+  .formIntro h2 { font-size: 24px !important; }
+  .selectRow { grid-template-columns: 1fr; }
+  .field :is(input, select, textarea) { font-size: 16px; }
+  .formActions { justify-content: space-between; }
+  .requiredNote { font-size: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .spinner { animation: none; }
+}

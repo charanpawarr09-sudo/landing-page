@@ -7,3 +7,6 @@ out/
 scratch/
 __pycache__/
 *.pyc
+
+.vercel/
+*.local
