@@ -1,0 +1,183 @@
+.main { min-width: 0; }
+.srOnly { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.hero { padding-block: 72px 40px; text-align: center; }
+.hero > span { justify-content: center; }
+.hero h1 { font-size: clamp(48px, 5.2vw, 72px); font-weight: 500; line-height: 1.06; letter-spacing: -.055em; }
+.hero > p { margin-top: 24px; color: var(--secondary); font-size: 17px; line-height: 1.8; }
+.billing { display: inline-flex; align-items: center; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 28px; font-size: 13px; color: var(--secondary); }
+.billing > span { color: var(--muted); }
+.plansSection { padding-bottom: 48px; }
+.plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.plan { padding: 28px 32px 32px; min-width: 0; background: var(--surface); border-radius: 16px; }
+.planTop { display: flex; justify-content: space-between; gap: 12px; color: var(--secondary); font-size: 11px; line-height: 20px; }
+.plan h3 { margin-top: 24px; font-size: 30px; font-weight: 500; letter-spacing: -.04em; line-height: 1.2; }
+.plan .planDescription { min-height: 52px; margin-top: 12px; color: var(--secondary); font-size: 14px; line-height: 1.8; max-width: 290px; }
+.price { display: flex; align-items: baseline; flex-wrap: wrap; column-gap: 4px; min-height: 76px; margin-top: 28px; }
+.price strong { font-size: clamp(44px, 4.3vw, 60px); font-weight: 500; line-height: 1.15; letter-spacing: -.06em; font-variant-numeric: lining-nums tabular-nums; }
+.currency { font-size: 25px; align-self: flex-start; line-height: 1.6; margin-right: 2px; }
+.perMonth { color: var(--secondary); font-size: 12px; margin-left: 4px; white-space: nowrap; }
+.price .customPrice { font-size: clamp(40px, 3.9vw, 54px); letter-spacing: -.05em; }
+.plan .priceNote { color: var(--secondary); font-size: 12px; }
+.plan .planButton { width: 100%; justify-content: space-between; margin-top: 24px; min-height: 48px; }
+.planFeatures { margin-top: 28px; padding-top: 16px; }
+.planFeatures > p { font-size: 12px; font-weight: 500; }
+.planFeatures ul { list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.planFeatures li { display: flex; align-items: flex-start; gap: 12px; color: var(--secondary); font-size: 13px; line-height: 1.7; }
+.planFeatures li svg { margin-top: 3px; }
+.plan.growth { background: var(--ink); color: var(--canvas); }
+.growth .planTop, .growth .planDescription, .growth .priceNote, .growth .perMonth, .growth .planFeatures li { color: var(--on-dark-muted); }
+.plan.growth .planButton { background: var(--canvas); border-color: var(--canvas); color: var(--ink); }
+.plan.growth .planButton:hover { background: var(--surface-strong); border-color: var(--surface-strong); }
+.planFootnote { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-top: 24px; font-size: 12px; }
+.planFootnote p { max-width: 540px; color: var(--secondary); }
+.planFootnote > a { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; margin-top: -10px; white-space: nowrap; }
+.planFootnote p a { overflow-wrap: anywhere; }
+.planFootnote a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.comparisonSection { padding-block: 64px 96px; }
+.sectionIntro { display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; }
+.sectionIntro > p { max-width: 320px; font-size: 15px; line-height: 1.8; color: var(--secondary); }
+.scrollHint { display: none; }
+.tableScroll { position: relative; margin-top: 40px; overflow-x: auto; overscroll-behavior-x: contain; border-radius: 16px; scrollbar-color: var(--field-line) var(--surface-strong); }
+.comparison { width: 100%; min-width: 800px; border-collapse: separate; border-spacing: 0; table-layout: fixed; text-align: center; font-size: 13px; }
+.featureColumn { width: 37%; }
+.comparison thead th { padding: 28px 20px 24px; background: var(--canvas); font-weight: 400; vertical-align: top; border-bottom: 0; }
+.comparison thead th:first-child { text-align: left; }
+.comparison thead th > span { display: block; font-size: 21px; line-height: 1.3; letter-spacing: -.03em; font-weight: 500; }
+.comparison thead small { display: block; margin-top: 8px; font-size: 12px; color: var(--secondary); }
+.comparison thead a { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 44px; margin-top: 8px; text-decoration: underline; text-underline-offset: 4px; font-size: 12px; }
+.comparison tbody th, .comparison td { padding: 16px 20px; font-weight: 400; }
+.comparison tbody th { text-align: left; color: var(--secondary); background: var(--canvas); }
+.comparison tbody tr:nth-child(odd):not(.groupRow) :is(th, td):not(.growthColumn) { background: var(--surface-subtle); }
+.comparison td { color: var(--ink); }
+.comparison td svg { display: inline-block; vertical-align: middle; }
+.comparison .growthColumn { background: var(--surface); }
+.comparison thead .growthColumn { background: var(--ink); color: var(--canvas); }
+.comparison thead .growthColumn small { color: var(--on-dark-muted); }
+.comparison .groupRow th { color: var(--ink); background: var(--surface-strong); font-weight: 500; font-size: 13px; padding-block: 20px; }
+.comparison tbody:last-child tr:last-child :is(th, td) { border-bottom: 0; }
+.cellText { color: var(--secondary); font-size: 12px; }
+.unavailable { color: var(--muted); font-size: 18px; }
+.tableNote { max-width: 800px; margin-top: 24px !important; font-size: 12px; color: var(--secondary); line-height: 1.8; }
+.workflowsSection { padding-block: 88px; background: var(--surface); }
+.workflows { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 48px 80px; margin-top: 56px; }
+.workflows article { padding: 0; }
+
+.workflowTop { display: flex; align-items: center; justify-content: space-between; color: var(--secondary); }
+.workflows h3 { margin-top: 24px; font-size: 27px; font-weight: 400; letter-spacing: -.035em; line-height: 1.25; }
+.workflows p { margin-top: 16px; color: var(--secondary); font-size: 15px; line-height: 1.8; max-width: 450px; }
+.workflowDetail { display: block; margin-top: 24px; font-size: 11px; color: var(--muted); }
+.includedSection { padding-block: 80px 0; }
+.includedList { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px 40px; list-style: none; margin: 40px 0; padding: 0; }
+.includedList li { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; }
+.includedList svg { margin-top: 3px; }
+.trustStrip { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; padding-block: 32px; }
+.trustStrip > span { display: inline-flex; align-items: center; gap: 12px; font-size: 12px; color: var(--secondary); }
+.finalSection { background: var(--ink); color: var(--canvas); padding-block: 64px; }
+.finalInner { display: flex; align-items: center; justify-content: space-between; gap: 64px; }
+.finalInner > div:first-child > span { color: var(--on-dark-muted); }
+.finalInner p { margin-top: 24px; max-width: 440px; font-size: 15px; line-height: 1.8; color: var(--on-dark-muted); }
+.finalActions { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.finalActions > a:first-child { background: var(--canvas); color: var(--ink); border-color: var(--canvas); }
+.finalActions > a:first-child:hover { background: var(--surface-strong); border-color: var(--surface-strong); }
+.finalActions > a:last-child { display: flex; align-items: center; min-height: 44px; gap: 16px; color: var(--on-dark-muted); font-size: 12px; }
+.finalActions > a:last-child:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+@media (max-width: 1199px) {
+  .plan { padding: 24px; }
+  .plan .planDescription { min-height: 76px; }
+  .price { column-gap: 2px; min-height: 84px; }
+  .perMonth { margin-left: 2px; }
+  .finalInner { gap: 32px; }
+}
+@media (max-width: 900px) {
+  .hero { padding-block: 56px 32px; }
+  .plan { padding: 24px 20px; }
+  .planTop { font-size: 10px; gap: 4px; }
+  .plan h3 { font-size: 27px; }
+  .planFeatures li { gap: 8px; font-size: 12px; }
+  .perMonth { flex-basis: 100%; margin-left: 0; }
+  .price { row-gap: 4px; min-height: 88px; }
+  .sectionIntro { gap: 32px; }
+  .sectionIntro > p { max-width: 260px; font-size: 14px; }
+  .scrollHint { display: flex; align-items: flex-start; gap: 8px; margin-top: 32px !important; color: var(--secondary); font-size: 12px; }
+  .scrollHint svg { margin-top: 2px; }
+  .tableScroll { margin-top: 16px; }
+  .comparison { min-width: 760px; }
+  .featureColumn { width: 34%; }
+  .comparison tr > th:first-child { position: sticky; left: 0; z-index: 1; }
+  .comparison .groupRow th { position: static; }
+  .workflows { column-gap: 48px; }
+  .workflows h3 { font-size: 24px; }
+  .includedList { gap: 24px; }
+  .includedList li { font-size: 13px; }
+  .finalInner { align-items: flex-start; flex-direction: column; }
+}
+@media (max-width: 760px) {
+  .plans { grid-template-columns: 1fr; border: 0; gap: 16px; }
+  .plan, .plan + .plan { padding: 28px; }
+  .plan.growth { margin: 0; }
+  .planTop { font-size: 11px; }
+  .plan h3 { margin-top: 20px; font-size: 30px; }
+  .plan .planDescription { min-height: 0; max-width: 420px; }
+  .price { min-height: 0; margin-top: 24px; }
+  .price strong { font-size: 56px; }
+  .price .customPrice { font-size: 48px; }
+  .perMonth { flex-basis: auto; margin-left: 4px; }
+  .plan .priceNote { margin-top: 8px; }
+  .planFeatures li { font-size: 13px; gap: 12px; }
+  .planFootnote { flex-direction: column; gap: 12px; }
+  .planFootnote > a { margin: 0; }
+  .sectionIntro { display: block; }
+  .sectionIntro > p { max-width: 480px; margin-top: 24px; font-size: 15px; }
+  .includedList { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (max-width: 600px) {
+  .hero { padding-block: 40px 28px; }
+  .hero h1 { font-size: clamp(37px, 9.6vw, 52px); }
+  .hero > span { font-size: 12px; }
+  .hero > p { font-size: 15px; margin-top: 20px; }
+  .desktopBreak { display: none; }
+  .billing { margin-top: 24px; font-size: 12px; }
+  .plan, .plan + .plan { padding: 24px; }
+  .price strong { font-size: 52px; }
+  .plansSection { padding-bottom: 32px; }
+  .comparisonSection { padding-block: 48px; }
+  .comparison { min-width: 660px; font-size: 12px; }
+  .featureColumn { width: 30%; }
+  .comparison thead th { padding: 24px 12px 16px; }
+  .comparison thead th > span { font-size: 18px; }
+  .comparison thead small { font-size: 11px; }
+  .comparison tbody th, .comparison td { padding: 16px 12px; }
+  .comparison tbody tr:not(.groupRow) th { font-size: 12px; }
+  .comparison .groupRow th { font-size: 12px; }
+  .cellText { font-size: 11px; }
+  .tableNote { font-size: 12px; }
+  .workflowsSection { padding-block: 48px; }
+  .workflows { grid-template-columns: 1fr; margin-top: 32px; gap: 36px; }
+  .workflows article, .workflows article:nth-child(even) { padding: 0; }
+  .workflows article:last-child { padding-bottom: 0; }
+  .workflows h3 { margin-top: 20px; }
+  .workflows p { font-size: 14px; }
+  .workflowDetail { margin-top: 20px; }
+  .includedSection { padding-top: 48px; }
+  .includedList { grid-template-columns: 1fr; margin-block: 32px; gap: 16px; }
+  .includedList li { font-size: 14px; }
+  .trustStrip { align-items: flex-start; flex-direction: column; gap: 20px; }
+  .trustStrip > span { font-size: 12px; }
+  .finalSection { padding-block: 48px; }
+  .finalInner { gap: 28px; }
+  .finalInner p { margin-top: 20px; font-size: 14px; }
+  .finalActions { width: 100%; }
+  .finalActions > a:first-child { width: 100%; justify-content: space-between; gap: 12px; }
+}
+@media (forced-colors: active) {
+  .plan.growth, .comparison thead .growthColumn { border: 1px solid CanvasText; }
+}
+@media print {
+  .tableScroll { overflow: visible; }
+  .comparison { min-width: 0; }
+  .comparison tr > th:first-child { position: static; }
+  .scrollHint { display: none; }
+}
+
+.growth :is(a,button):focus-visible { outline-color: var(--canvas); }

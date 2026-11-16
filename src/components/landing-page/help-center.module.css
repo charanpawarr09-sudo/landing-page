@@ -1,0 +1,63 @@
+
+.hero { display: grid; grid-template-columns: 1.5fr 1fr; gap: 96px; padding-block: 80px 64px; align-items: center; }
+.hero h1 { font-size: clamp(44px, 4.8vw, 68px); line-height: 1.08; font-weight: 500; letter-spacing: -.05em; text-wrap: balance; }
+.hero > div > p { margin-top: 28px; max-width: 560px; font-size: 17px; line-height: 1.8; color: var(--secondary); }
+.hero > div > a { margin-top: 28px; }
+.quickStart { padding: 32px; border-radius: 16px; background: var(--surface); }
+.asideLabel { color: var(--muted); font-size: 12px; }
+.quickStart h2 { font-size: 25px !important; font-weight: 500; letter-spacing: -.03em !important; line-height: 1.3 !important; margin-top: 16px; }
+.quickStart p { margin-top: 16px; color: var(--secondary); font-size: 14px; line-height: 1.8; }
+.quickStart a { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 44px; font-size: 13px; margin-top: 16px; }
+.quickStart a + a { border-top: 1px solid var(--line); padding-top: 16px; margin-top: 8px; }
+.quickStart a:hover, .topics a:hover strong, .deviceNote a:hover, .supportLink:hover { text-decoration: underline; text-underline-offset: 5px; }
+.topics { display: grid; grid-template-columns: repeat(4,1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.topics a { position: relative; padding: 28px 24px; display: flex; flex-direction: column; gap: 10px; transition: background 160ms; }
+.topics a + a { border-left: 1px solid var(--line); }
+.topics a:hover { background: var(--surface); }
+.topics a > svg:first-child { color: var(--accent); margin-bottom: 10px; }
+.topics strong { font-size: 15px; font-weight: 500; }
+.topics span { font-size: 12px; color: var(--muted); }
+.topics a > svg:last-child { position: absolute; top: 32px; right: 24px; color: var(--muted); }
+.section { padding-block: 88px; }
+.flow { margin-top: 48px; border-top: 1px solid var(--line); }
+.step { display: grid; grid-template-columns: 56px 1.7fr 1fr; gap: 32px; padding-block: 36px; border-bottom: 1px solid var(--line); align-items: start; }
+.number { font-family: var(--mono); font-size: 12px; padding-top: 4px; color: var(--muted); }
+.role { display: block; color: var(--accent); font-size: 12px; margin-bottom: 12px; }
+.step h3, .team h3, .essentials h3 { font-size: 24px; line-height: 1.3; font-weight: 500; letter-spacing: -.025em; }
+.step p { margin-top: 16px; max-width: 620px; color: var(--secondary); font-size: 14px; line-height: 1.9; }
+.handover { display: flex; gap: 12px; padding: 20px 24px; border-radius: 12px; background: var(--surface); color: var(--secondary); font-size: 13px; line-height: 1.8; }
+.handover svg { margin-top: 3px; color: var(--accent); }
+.team { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 48px; }
+.team article > svg { color: var(--accent); margin-bottom: 20px; }
+.team p, .essentials p { color: var(--secondary); font-size: 14px; line-height: 1.9; margin-top: 16px; }
+.accessNote, .deviceNote { display: flex; align-items: center; gap: 12px; color: var(--muted); font-size: 12px; line-height: 1.8; margin-top: 32px !important; }
+.setupSection { background: var(--surface); padding-block: 80px; }
+.setupGrid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 112px; }
+.setupGrid > div > p { color: var(--secondary); font-size: 15px; line-height: 1.9; max-width: 420px; margin-top: 24px; }
+.setupGrid > div > a { margin-top: 28px; }
+.setupList { list-style: none; counter-reset: setup; padding: 0; margin: 0; }
+.setupList li { position: relative; padding: 0 0 28px 44px; counter-increment: setup; }
+.setupList li::before { content: counter(setup, decimal-leading-zero); position: absolute; left: 0; top: 3px; color: var(--muted); font-family: var(--mono); font-size: 11px; }
+.setupList li + li { padding-top: 24px; border-top: 1px solid var(--line); }
+.setupList li + li::before { top: 27px; }
+.setupList li:last-child { padding-bottom: 0; }
+.setupList strong { font-size: 17px; font-weight: 500; }
+.setupList p { color: var(--secondary); font-size: 14px; line-height: 1.9; margin-top: 8px; }
+.essentials { margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px 80px; }
+.essentials article { border-top: 1px solid var(--line); padding-top: 28px; }
+.essentials article > svg { margin-bottom: 20px; color: var(--accent); }
+.deviceNote { flex-wrap: wrap; }
+.deviceNote a { display: inline-flex; align-items: center; gap: 8px; margin-left: auto; color: var(--accent); min-height: 44px; }
+.questions { border-top: 1px solid var(--line); }
+.support { background: var(--ink); color: var(--canvas); padding-block: 80px; }
+.supportInner { display: grid; grid-template-columns: 1.2fr 1fr; gap: 112px; align-items: center; }
+.supportInner > div > span { color: var(--on-dark-muted); }
+.supportInner > div > p { margin-top: 24px; max-width: 480px; font-size: 15px; line-height: 1.9; color: var(--on-dark-muted); }
+.email { display: inline-flex; align-items: center; gap: 16px; font-size: clamp(18px,2vw,26px); letter-spacing: -.025em; min-height: 48px; overflow-wrap: anywhere; }
+.supportContact > span { display: block; margin-top: 20px; font-size: 12px; line-height: 1.8; }
+.supportLink { display: inline-flex; align-items: center; gap: 12px; margin-top: 20px; min-height: 44px; font-size: 14px; }
+.support :is(a,button):focus-visible { outline-color: var(--canvas); }
+@media (max-width: 1100px) { .hero { gap: 48px; } .setupGrid, .supportInner { gap: 56px; } .topics a { padding-inline: 16px; } .topics a > svg:last-child { right: 16px; } .step { gap: 20px; grid-template-columns: 36px 1.5fr 1fr; } }
+@media (max-width: 850px) { .hero { grid-template-columns: 1fr; padding-top: 48px; gap: 32px; } .quickStart { max-width: 600px; } .topics { grid-template-columns: 1fr 1fr; } .topics a:nth-child(3) { border-left: 0; } .topics a:nth-child(n+3) { border-top: 1px solid var(--line); } .step { grid-template-columns: 32px 1fr; } .handover { grid-column: 2; } .team { gap: 40px; } .setupGrid, .supportInner { grid-template-columns: 1fr; gap: 40px; } .section { padding-block: 64px; } }
+@media (max-width: 600px) { .hero h1 { font-size: 40px; } .hero h1 br { display: none; } .quickStart { padding: 24px; } .team, .essentials { grid-template-columns: 1fr; gap: 32px; } .topics strong { font-size: 13px; } .topics span { font-size: 11px; } .accessNote { align-items: flex-start; } .accessNote svg { margin-top: 4px; } .setupSection, .support { padding-block: 56px; } .step { column-gap: 16px; } .handover { padding: 16px; } .deviceNote a { margin-left: 0; } }
+@media (prefers-reduced-motion: reduce) { .topics a { transition: none; } }
