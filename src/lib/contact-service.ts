@@ -3,9 +3,16 @@ import { createHash, randomUUID } from "node:crypto";
 import { contactSchema, type ContactInput, type ContactResult } from "./contact-schema";
 
 export type ContactDelivery = "accepted" | "unavailable" | "unconfirmed" | "limited";
+export interface ContactSuccessEvent {
+  event: "repairnox_inquiry_accepted";
+  eventId: string;
+  topic: ContactInput["topic"];
+  industry: ContactInput["industry"];
+}
 export interface ContactDependencies {
   admit: (email: string) => Promise<boolean>;
   send: (input: ContactInput, idempotencyKey: string) => Promise<ContactDelivery>;
+  onAccepted?: (event: ContactSuccessEvent) => void;
 }
 export async function processContactInquiry(input: unknown, dependencies: ContactDependencies): Promise<ContactResult> {
   const parsed = contactSchema.safeParse(input);
@@ -22,7 +29,12 @@ export async function processContactInquiry(input: unknown, dependencies: Contac
     const digest = createHash("sha256").update(JSON.stringify(parsed.data)).digest("hex").slice(0, 32);
     const key = `repairnox-contact-${parsed.data.requestId || randomUUID()}-${digest}`;
     const delivery = await dependencies.send(parsed.data, key);
-    if (delivery === "accepted") return { status: "success", message: "Your inquiry has been submitted. We’ll reply using the contact details you provided." };
+    if (delivery === "accepted") {
+      try {
+        dependencies.onAccepted?.({ event: "repairnox_inquiry_accepted", eventId: createHash("sha256").update(key).digest("hex"), topic: parsed.data.topic, industry: parsed.data.industry });
+      } catch { /* Measurement must never turn an accepted inquiry into a failed submission. */ }
+      return { status: "success", message: "Your inquiry has been submitted. We’ll reply using the contact details you provided." };
+    }
     if (delivery === "limited") return { status: "error", message: "The contact service is busy. Please wait a while and try again. Your details are still here." };
     if (delivery === "unconfirmed") return { status: "error", message: "We couldn’t confirm submission. Your details are still here. Retry with the same details to help avoid a duplicate request." };
   } catch {

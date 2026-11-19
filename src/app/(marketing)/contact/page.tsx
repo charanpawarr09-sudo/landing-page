@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { randomUUID } from "node:crypto";
 import Link from "next/link";
 import { ArrowUpRight, MessageSquare, Monitor, ReceiptText } from "lucide-react";
@@ -10,11 +10,7 @@ import { HeadlineReveals } from "@/components/landing-page/HeadlineReveals";
 import shared from "@/components/landing-page/landing-page.module.css";
 import styles from "@/components/landing-page/contact-page.module.css";
 
-export const metadata: Metadata = {
-  alternates: { canonical: "/contact" },
-  title: "Contact us | RepairNox",
-  description: "Talk to RepairNox about your repair shop, a free trial, plan pricing, or your setup requirements.",
-};
+export const metadata = pageMetadata("Contact us | RepairNox", "Talk to RepairNox about your repair shop, a free trial, plan pricing, or your setup requirements.", "/contact");
 
 export default async function ContactPage({ searchParams }: { searchParams: Promise<{ topic?: string | string[] }> }) {
   const { topic } = await searchParams;

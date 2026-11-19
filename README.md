@@ -23,3 +23,11 @@ The Help Center combines the repair flow with the responsibilities of counter st
 Porkbun DNS: add CNAME host `help`, answer `43847e58ed622a29.vercel-dns-016.com`, using the default TTL. Preserve all root, www, app and email records. Vercel owns the TLS certificate lifecycle once DNS resolves correctly.
 
 The previous website remains in Git history. Earlier design/research documents and preview helpers in this repository are historical; the root package and source describe the current application.
+
+## SEO and measurement
+
+The homepage targets repair shop management software, with industry pages under `/industries`, practical articles under `/guides`, and an About page. All are linked and included in `/sitemap.xml`. New content is rendered statically, with canonical URLs, social previews, organization/breadcrumb/article data as appropriate. Unknown industry/guide slugs return 404. `/guide` redirects permanently to the Help Center.
+
+Run `python3 scripts/check-seo.py http://localhost:3102` against a running production build, or pass the public site URL after deployment. See [SEO launch and account setup](docs/seo-launch-2026-11-19.md) for keyword research, measurement limits, Search Console connection, and monthly review. Optional server-only `GOOGLE_SITE_VERIFICATION` emits Google's supplied verification token after a rebuild. Preview builds are noindex.
+
+Accepted inquiries log a privacy-limited conversion event in Vercel; deduplicate by eventId. Search Console and analytics account connections remain separate setup steps; no paid tracker or recurring job was enabled.

@@ -1,7 +1,7 @@
 import "server-only";
 import { randomUUID } from "node:crypto";
 import { contactIndustries, contactTopics, type ContactInput, type ContactResult } from "./contact-schema";
-import { processContactInquiry, type ContactDelivery } from "./contact-service";
+import { processContactInquiry, type ContactDelivery, type ContactSuccessEvent } from "./contact-service";
 
 const maxBytes = 32_768;
 const limits = { fullName: 100, shopName: 160, email: 254, phone: 40, country: 80, preferredCallback: 160, industry: 40, topic: 40, message: 3000, requestId: 36, website: 100 } as const;
@@ -13,6 +13,7 @@ const escape = (value: unknown) => String(value ?? "").replace(/[&<>"']/g, char 
 export async function handleContactRequest(request: Request, dependencies: {
   origins: readonly string[];
   send: (input: ContactInput, idempotencyKey: string) => Promise<ContactDelivery>;
+  onAccepted?: (event: ContactSuccessEvent) => void;
 }) {
   const json = request.headers.get("accept")?.includes("application/json");
   let values: Record<string, unknown> = {};
@@ -56,7 +57,7 @@ export async function handleContactRequest(request: Request, dependencies: {
       values.consent = form.get("consent") === "on";
     }
     // No shop data, application credentials, or Firebase connection in this public deployment.
-    const result = await processContactInquiry(values, { admit: async () => true, send: dependencies.send });
+    const result = await processContactInquiry(values, { admit: async () => true, send: dependencies.send, onAccepted: dependencies.onAccepted });
     return reply(result, result.status === "success" ? 200 : result.errors ? 400 : 503);
   } catch {
     return reject(400, "We couldn’t read this inquiry. Please check the form and try again.");

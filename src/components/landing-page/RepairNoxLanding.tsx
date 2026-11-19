@@ -9,6 +9,7 @@ import { RevealHeading } from "./RevealHeading";
 import { HeadlineReveals } from "./HeadlineReveals";
 import { PanelReveals } from "./PanelReveals";
 import styles from "./landing-page.module.css";
+import content from "./content-page.module.css";
 
 export function RepairNoxLanding() {
   return (
@@ -19,8 +20,8 @@ export function RepairNoxLanding() {
         <section className={styles.hero} aria-labelledby="hero-heading">
           <div className={`${styles.container} ${styles.heroGrid}`}>
             <div className={styles.heroCopy}>
-              <span className={styles.eyebrow}>Software for independent repair shops</span>
-              <RevealHeading as="h1" id="hero-heading" lines={["Your repair shop,", "in working order"]} />
+              <span className={styles.eyebrow}>Repair shop management software</span>
+              <RevealHeading as="h1" id="hero-heading" lines={["Repair shop software,", "in working order"]} />
               <p>From the first question at the counter to the final payment. Keep repair tickets, parts, customers, and checkout in one practical workspace.</p>
               <div className={styles.heroActions}>
                 <Link href={freeTrialHref} className={`${styles.button} ${styles.largeButton}`}>Start free trial <ArrowUpRight size={18} aria-hidden="true" /></Link>
@@ -42,10 +43,10 @@ export function RepairNoxLanding() {
 
         <section className={`${styles.container} ${styles.audienceStrip}`} aria-label="Designed for your kind of repair business">
           <p>Built around<br /><strong>your kind of work</strong></p>
-          <span><Smartphone size={18} aria-hidden="true" />Electronics repair</span>
-          <span><Car size={18} aria-hidden="true" />Automotive repair</span>
-          <span><Gem size={18} aria-hidden="true" />Jewelry stores</span>
-          <span><Package size={18} aria-hidden="true" />Parts & accessories</span>
+          <Link href="/industries/phone-repair"><Smartphone size={18} aria-hidden="true" />Phone repair</Link>
+          <Link href="/industries/computer-repair"><Package size={18} aria-hidden="true" />Computer repair</Link>
+          <Link href="/industries/automotive-repair"><Car size={18} aria-hidden="true" />Automotive repair</Link>
+          <Link href="/industries/jewelry-repair"><Gem size={18} aria-hidden="true" />Jewelry repair</Link>
         </section>
 
         <section id="platform" className={`${styles.container} ${styles.platform}`} aria-labelledby="platform-heading">
@@ -87,6 +88,12 @@ export function RepairNoxLanding() {
               <Link href={freeTrialHref} className={styles.textLink}>Start free trial <ArrowUpRight size={18} aria-hidden="true" /></Link>
             </div>
           </div>
+        </section>
+
+        <section className={`${styles.container} ${content.homeResources}`} aria-labelledby="resources-heading">
+          <h2 id="resources-heading">A clearer handoff starts with the details</h2>
+          <p>Use these practical guides to review your intake process and evaluate the software behind your shop.</p>
+          <nav aria-label="Repair shop guides"><Link href="/guides/repair-shop-intake-checklist" className={content.inlineLink}>Repair intake checklist</Link><Link href="/guides/choose-repair-shop-software" className={content.inlineLink}>How to choose repair shop software</Link><Link href="/industries" className={content.inlineLink}>Explore industries</Link></nav>
         </section>
 
         <section className={`${styles.container} ${styles.finalCta}`} aria-labelledby="final-heading">

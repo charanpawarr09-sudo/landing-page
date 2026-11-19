@@ -109,7 +109,7 @@
 .audienceStrip { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 28px 32px; background: var(--surface); border-radius: 16px; }
 .audienceStrip > p { font-size: 12px; line-height: 20px; color: var(--muted); }
 .audienceStrip strong { font-weight: 400; color: var(--ink); }
-.audienceStrip > span { display: inline-flex; align-items: center; gap: 12px; font-size: 13px; color: var(--secondary); }
+.audienceStrip > a { display: inline-flex; align-items: center; gap: 12px; font-size: 13px; color: var(--secondary); }
 .platform { padding-block: 96px; }
 .sectionIntro { display: flex; justify-content: space-between; align-items: flex-end; gap: 64px; }
 .site h2 { font-size: clamp(36px, 3.4vw, 50px); line-height: 1.12; font-weight: 400; letter-spacing: -.045em; }
@@ -300,7 +300,7 @@
   .repairDevice > span { font-size: 10px; }
   .status { font-size: 9px; }
   .assignee { font-size: 9px; }
-  .audienceStrip > span { font-size: 12px; gap: 8px; }
+  .audienceStrip > a { font-size: 12px; gap: 8px; }
   .sectionIntro { gap: 40px; }
   .sectionIntro > p { max-width: 280px; font-size: 14px; }
   .tourPanel { gap: 48px; }
@@ -344,7 +344,7 @@
   .audienceStrip > p { flex-basis: 100%; }
   .audienceStrip > p br { display: none; }
   .audienceStrip strong { margin-left: 4px; }
-  .audienceStrip > span { font-size: 12px; }
+  .audienceStrip > a { font-size: 12px; }
   .platform, .workflow { padding-block: 72px; }
   .site h2 { font-size: 40px; }
   .sectionIntro { align-items: flex-start; gap: 32px; }
@@ -430,8 +430,8 @@
   .visualCaption { text-align: left; font-size: 11px; }
   .audienceStrip { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 12px; padding-block: 24px; }
   .audienceStrip > p { grid-column: 1/-1; }
-  .audienceStrip > span { font-size: 11px; gap: 8px; }
-  .audienceStrip > span > svg { width: 16px; }
+  .audienceStrip > a { font-size: 11px; gap: 8px; }
+  .audienceStrip > a > svg { width: 16px; }
   .platform, .workflow { padding-block: 56px; }
   .site h2 { font-size: clamp(32px, 8.6vw, 40px); line-height: 1.14; letter-spacing: -.04em; }
   .sectionIntro { display: block; }
@@ -528,3 +528,6 @@
 }
 
 .checkoutSection :is(a,button):focus-visible { outline-color: var(--canvas); }
+
+.audienceStrip > a { min-height: 44px; }
+.audienceStrip > a:hover { text-decoration: underline; text-underline-offset: 4px; }

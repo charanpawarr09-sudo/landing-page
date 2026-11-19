@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const contactIndustries = ["Phone & tablet repair", "Computer repair", "Phone & computer repair", "Parts & accessories", "Other"] as const;
+export const contactIndustries = ["Phone & tablet repair", "Computer repair", "Phone & computer repair", "Automotive repair", "Jewelry repair", "Parts & accessories", "Other"] as const;
 export const contactTopics = ["Product question", "Free trial", "Pricing & plans", "Advanced plan"] as const;
 export type ContactTopic = typeof contactTopics[number];
 const singleLine = (max: number) => z.string().trim().max(max).refine(value => !/[\u0000-\u001f\u007f]/.test(value), "Use a single line of text.");

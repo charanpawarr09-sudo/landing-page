@@ -15,7 +15,8 @@ export function HeadlineReveals() {
     if (!root || preference.matches || !("IntersectionObserver" in window)) return;
 
     const headings: HeadingState[] = Array.from(
-      root.querySelectorAll<HTMLElement>("[data-scroll-heading]"),
+      // Keep the primary heading visible immediately for readers and LCP.
+      root.querySelectorAll<HTMLElement>("[data-scroll-heading]:not(h1)"),
       (element) => ({
         element,
         words: Array.from(element.querySelectorAll<HTMLElement>("[data-reveal-word]")),

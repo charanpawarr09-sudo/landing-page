@@ -1,18 +1,7 @@
-import type { Metadata } from "next";
 import { RepairNoxLanding } from "@/components/landing-page/RepairNoxLanding";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  alternates: { canonical: "/" },
-  title: "RepairNox | Software for Independent Repair Shops",
-  description:
-    "Keep repair tickets, parts inventory, customer records, and checkout together. RepairNox is practical shop management software for phone and computer repair teams.",
-  openGraph: {
-    title: "RepairNox | A Better Day at Your Repair Shop",
-    description:
-      "A practical workspace for repair tickets, parts, customers, checkout, and owner reporting.",
-    type: "website",
-  },
-};
+export const metadata = pageMetadata("Repair Shop Management Software | RepairNox", "Manage repair tickets, parts inventory, customers, and checkout in one workspace. Explore RepairNox for independent repair shops and discuss your free trial.", "/");
 
 export default function MarketingPage() {
   return <RepairNoxLanding />;

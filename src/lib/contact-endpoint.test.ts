@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { handleContactRequest } from "./contact-endpoint";
 import type { ContactInput } from "./contact-schema";
 import { sendContactInquiry } from "./contact-sender";
+import type { ContactSuccessEvent } from "./contact-service";
 const origin = "https://repairnox.com";
 const valid: ContactInput = { fullName: "Test Owner", shopName: "Example Repair", email: "owner@example.test", phone: "", country: "United States", preferredCallback: "Monday 2 PM US Eastern Time", industry: "Phone & computer repair", topic: "Free trial", message: "Please arrange a demo for my repair shop.", consent: true, website: "", requestId: "cadfcf78-50db-4a43-a262-0bf8a7400399" };
 const request = (value: unknown = valid, path = "/api/demo", requestOrigin = origin) => new Request(origin + path, { method: "POST", headers: { Origin: requestOrigin, Accept: "application/json", "Content-Type": "application/json" }, body: JSON.stringify(value) });
@@ -30,6 +31,35 @@ test("only accepted provider responses yield success; retry IDs follow the conte
     const response = await handleContactRequest(request(), { origins: [origin], send: async () => status });
     assert.equal(response.status, 503); assert.equal((await response.json()).status, "error");
   }
+});
+
+test("automotive and jewelry trial inquiries reach validated delivery", async () => {
+  const received: string[] = [];
+  for (const industry of ["Automotive repair", "Jewelry repair"] as const) {
+    const response = await handleContactRequest(request({ ...valid, industry }), {
+      origins: [origin], send: async input => { received.push(input.industry); return "accepted"; },
+    });
+    assert.equal(response.status, 200);
+    assert.equal((await response.json()).status, "success");
+  }
+  assert.deepEqual(received, ["Automotive repair", "Jewelry repair"]);
+});
+
+test("conversion events only follow accepted delivery and omit contact details", async () => {
+  const events: ContactSuccessEvent[] = [];
+  const onAccepted = (event: ContactSuccessEvent) => { events.push(event); };
+  await handleContactRequest(request({ ...valid, consent: false }), { origins: [origin], send: async () => "accepted", onAccepted });
+  await handleContactRequest(request(), { origins: [origin], send: async () => "unavailable", onAccepted });
+  assert.equal(events.length, 0);
+  const deps = { origins: [origin], send: async () => "accepted" as const, onAccepted };
+  await handleContactRequest(request(), deps);
+  await handleContactRequest(request(), deps);
+  assert.equal(events.length, 2);
+  assert.equal(events[0].eventId, events[1].eventId);
+  assert.deepEqual(Object.keys(events[0]).sort(), ["event", "eventId", "industry", "topic"]);
+  assert.equal(events[0].topic, "Free trial");
+  const response = await handleContactRequest(request(), { ...deps, onAccepted: () => { throw new Error("measurement unavailable"); } });
+  assert.equal(response.status, 200);
 });
 
 test("native and fetch forms retain validation context; native HTML escapes visitor text", async () => {
