@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ArrowUpRight, Check, ChevronDown, Mail, Monitor } from "lucide-react";
 import { LandingHeader } from "@/components/landing-page/LandingHeader";
@@ -7,8 +7,7 @@ import { companyIdentifier, supportEmail } from "@/lib/marketing-contact";
 import shared from "@/components/landing-page/landing-page.module.css";
 import styles from "@/components/landing-page/information-pages.module.css";
 
-export const metadata: Metadata = {
-  alternates: { canonical: "/support" }, title: "Support & Help | Repairnox", description: "Contact Repairnox support, request a demo or callback, and find answers about onboarding, data imports, hardware, and trials." };
+export const metadata = pageMetadata("Support & Help | Repairnox", "Contact Repairnox support, request a demo or callback, and find answers about onboarding, data imports, hardware, and trials.", "/support");
 
 const questions = [
   { question: "How long does a Repairnox live demo take?", answer: "Around 15–20 minutes, tailored to your shop’s specific workflow. We can focus on repair tickets, checkout, inventory, or the parts of the platform you want to understand." },

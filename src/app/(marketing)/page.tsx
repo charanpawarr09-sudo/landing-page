@@ -1,19 +1,12 @@
-import type { Metadata } from "next";
 import { RepairNoxLanding } from "@/components/landing-page/RepairNoxLanding";
+import { pageMetadata, siteUrl } from "@/lib/seo";
+import { StructuredData } from "@/components/landing-page/StructuredData";
 
-export const metadata: Metadata = {
-  alternates: { canonical: "/" },
-  title: "RepairNox | Software for Independent Repair Shops",
-  description:
-    "Keep repair tickets, parts inventory, customer records, and checkout together. RepairNox is practical shop management software for phone and computer repair teams.",
-  openGraph: {
-    title: "RepairNox | A Better Day at Your Repair Shop",
-    description:
-      "A practical workspace for repair tickets, parts, customers, checkout, and owner reporting.",
-    type: "website",
-  },
-};
+export const metadata = pageMetadata("RepairNox | Repair Shop Management Software", "Manage repair tickets, parts inventory, customers, and checkout in one workspace. Explore RepairNox for independent repair shops and discuss your free trial.", "/");
 
 export default function MarketingPage() {
-  return <RepairNoxLanding />;
+  return <>
+    <RepairNoxLanding />
+    <StructuredData data={{ "@context": "https://schema.org", "@type": "WebSite", "@id": `${siteUrl}/#website`, name: "RepairNox", alternateName: "repairnox.com", url: `${siteUrl}/`, inLanguage: "en", publisher: { "@id": `${siteUrl}/#organization` } }} />
+  </>;
 }

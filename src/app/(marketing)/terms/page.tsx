@@ -1,9 +1,8 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { PolicyPage, type PolicySection } from "@/components/landing-page/PolicyPage";
 import { companyIdentifier, supportEmail } from "@/lib/marketing-contact";
 
-export const metadata: Metadata = {
-  alternates: { canonical: "/terms" }, title: "Terms of Service | Repairnox", description: "Terms for the Repairnox website, demo requests, and evaluation access, operated by Zonoha Group." };
+export const metadata = pageMetadata("Terms of Service | Repairnox", "Terms for the Repairnox website, demo requests, and evaluation access, operated by Zonoha Group.", "/terms");
 
 const sections: PolicySection[] = [
   { id: "scope", title: "Acceptance and scope", content: <><p>These Terms govern access to <a href="https://repairnox.com">repairnox.com</a>, requests to schedule software demonstrations, and evaluation or trial access provided by {companyIdentifier} (“Repairnox”, “we”, or “us”). By using these services, you agree to these Terms. If you do not agree, do not use them.</p><p>These website and evaluation Terms do not replace a separately agreed paid subscription, onboarding, or service agreement.</p></> },
