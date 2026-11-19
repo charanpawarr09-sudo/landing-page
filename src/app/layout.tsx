@@ -10,7 +10,8 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  ...pageMetadata("Repair Shop Management Software | RepairNox", "Repair tickets, parts inventory, customer records, and checkout for independent repair businesses.", "/"),
+  ...pageMetadata("RepairNox | Repair Shop Management Software", "Repair tickets, parts inventory, customer records, and checkout for independent repair businesses.", "/"),
+  applicationName: "RepairNox",
   metadataBase: new URL(siteUrl),
   robots: { index: process.env.VERCEL_ENV !== "preview", follow: true },
   ...(process.env.GOOGLE_SITE_VERIFICATION ? { verification: { google: process.env.GOOGLE_SITE_VERIFICATION } } : {}),

@@ -22,7 +22,7 @@ export function RepairNoxLanding() {
             <div className={styles.heroCopy}>
               <span className={styles.eyebrow}>Repair shop management software</span>
               <RevealHeading as="h1" id="hero-heading" lines={["Repair shop software,", "in working order"]} />
-              <p>From the first question at the counter to the final payment. Keep repair tickets, parts, customers, and checkout in one practical workspace.</p>
+              <p>RepairNox brings repair tickets, parts, customers, and checkout into one practical workspace—from the first question at the counter to the final payment.</p>
               <div className={styles.heroActions}>
                 <Link href={freeTrialHref} className={`${styles.button} ${styles.largeButton}`}>Start free trial <ArrowUpRight size={18} aria-hidden="true" /></Link>
                 <a href="#platform" className={styles.secondaryButton}>Explore the platform <ArrowDown size={16} aria-hidden="true" /></a>
