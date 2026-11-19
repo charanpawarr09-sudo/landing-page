@@ -3,7 +3,7 @@ import { pageMetadata } from "@/lib/seo";
 import { ContentPage, ContentCta } from "@/components/landing-page/ContentPage";
 import styles from "@/components/landing-page/content-page.module.css";
 
-export const metadata = pageMetadata("About RepairNox | Repair Shop Management Software", "RepairNox, operated by Zonoha Group, brings repair tickets, parts inventory, customer records, and checkout into a shared workspace for independent repair shops.", "/about");
+export const metadata = pageMetadata("About RepairNox | Repair Shop Management Software", "RepairNox, operated by Zonoha Group, connects repair tickets, parts, customers, and checkout in a shared workspace for independent repair shops.", "/about");
 
 export default function AboutPage() {
   return <ContentPage title="A shared workspace for the everyday work of repair" description="RepairNox brings repair tickets, parts inventory, customer records, and checkout together for independent repair businesses." breadcrumb={[{ name: "About", path: "/about" }]}>

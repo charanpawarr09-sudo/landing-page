@@ -53,3 +53,11 @@ Use the first two guides as the initial useful content, not a mass publishing te
 ## Validation and release
 
 Run `npm run test:contact`, `npm run build`, start the production server, then `python3 scripts/check-seo.py http://localhost:3102`. The rendered-site check covers all 15 canonical pages, unique titles/descriptions, readable headings, schema JSON, internal discovery, trial links, robots, unknown-slug 404s and the PNG share image. Contact tests use fake delivery and never send email. Stage a production deployment without assigning domains, validate the staged site, then promote that exact deployment. Check public-domain metadata and sitemap after promotion.
+
+## Verified production release
+
+Source commit `045fdbc` was staged as `dpl_8NffkysPRYc1DMkLfqbe9UrLb3od`, authenticated checks passed, and that exact build was promoted. Public checks passed on all 15 canonical URLs. Root, www redirect, Help Center, and legacy guide redirect were checked. GitHub CI passed: https://github.com/charanpawarr09-sudo/landing-page/actions/runs/44497048942
+
+Post-release audit `3a76fca4-34a0-4996-85df-238be8adb1d8` crawled 18 URLs with no critical or warning crawl issues. Its homepage mobile Lighthouse scores were performance 99, accessibility 100, best practices 100 and SEO 100; lab LCP 1993ms and CLS 0. The expected contact-query canonicalization remains intentional. Two 161-character descriptions were subsequently shortened. Lighthouse still identifies small unused-JavaScript, blocking-CSS and logo-image opportunities; the 99 score is a lab sample, not field data or evidence of a ranking gain.
+
+Search Console connection, property verification, sitemap submission in that account, long-term analytics attribution, real case studies, and industry outreach remain pending. They are not represented as complete. No recurring monitoring job was created.
